@@ -1,0 +1,24 @@
+apiVersion: skaffold/v1beta8
+kind: Config
+build:
+  artifacts:
+  - image: gcr.io/k8s-skaffold/leeroy-web
+    context: ./services/leeroy-web/
+  - image: gcr.io/k8s-skaffold/leeroy-app
+    context: ./services/leeroy-app/
+deploy:
+  kustomize:
+    path: targets/base
+profiles:
+- name: dev
+  deploy:
+    kustomize:
+      path: targets/dev
+- name: staging
+  deploy:
+    kustomize:
+      path: targets/staging
+- name: production
+  deploy:
+    kustomize:
+      path: targets/production
