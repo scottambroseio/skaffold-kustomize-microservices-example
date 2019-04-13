@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+- ../../services/leeroy-app/overlays/production
+- ../../services/leeroy-web/overlays/production
+commonLabels:
+  project: leeroy
+  env: production
